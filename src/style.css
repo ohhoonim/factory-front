@@ -1,0 +1,28 @@
+body {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+#container {
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 120px 1fr;
+}
+
+#sidebar {
+  background-color: black;
+  padding: 20px 10px;
+}
+
+#sidebar a {
+  display:block;
+  color: whitesmoke;
+  text-decoration: none;
+  margin-bottom: 20px; 
+}
+
+#contents {
+  background-color: azure;
+}
