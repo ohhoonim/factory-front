@@ -1,10 +1,10 @@
 <script setup>
 import { RouterLink, useRoute, useRouter } from 'vue-router';
 import TabItem from './components/tab/tabItem.vue'
-import tabsStore from './store/tabsStore.js'
+import {tabsStore} from './store/tabsStore.js'
 const router = useRouter()
 const routes = router.getRoutes()
-const store = tabsStore;
+const store = tabsStore()
 const setTabs = (r) => {
   store.addTab(r)
 }

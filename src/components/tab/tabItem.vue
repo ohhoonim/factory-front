@@ -6,13 +6,10 @@
   </div>
 </template>
 <script setup>
-import { onMounted, ref } from 'vue';
-import tabsStore from '../../store/tabsStore';
+import { tabsStore }  from '../../store/tabsStore';
 
-const tabs = ref([]) 
-onMounted(() => {
-    tabs.value = tabsStore.getTabs()
-} )
+const store = tabsStore()
+const tabs = store.getTabs;
 </script>
 
 <style scoped>

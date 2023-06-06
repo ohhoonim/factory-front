@@ -1,19 +1,19 @@
-import {ref} from "vue"
+import { ref, computed } from "vue"
 
-const tabsList = ref([
-    {name: "home", path: "/"},
-])
+import { defineStore } from "pinia"
 
-const tabsStore  = {
-   addTab : (tab) => {
-    let hasTab = tabsList.value.find(v => v.path === tab.path) 
-    if (!hasTab) {
-       tabsList.value.push(tab) 
-    }
-   },
-   getTabs : () => {
-    return tabsList.value
-   } 
-}
+export const tabsStore = defineStore('tabsStore', () => {
+   const tabsList = ref([
+      { name: "home", path: "/" },
+   ])
+   const getTabs = computed(() => tabsList)
 
-export default tabsStore;
+   function addTab(tab) {
+      let hasTab = tabsList.value.find(v => v.path === tab.path)
+      if (!hasTab) {
+         tabsList.value.push(tab)
+      }
+   }
+
+   return { tabsList, getTabs, addTab } 
+})
