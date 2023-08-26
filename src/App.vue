@@ -1,19 +1,10 @@
-<script setup>
-import TabItem from "./components/tab/tabItem.vue";
-import Sidebar from "./components/layout/Sidebar.vue";
+<script setup lang="ts">
+import Discord from "@/layouts/default/Discord.vue";
 </script>
 
 <template>
-  <div id="container">
-    <Sidebar/> 
-    <div id="contents">
-      <tab-item />
-      <router-view />
-    </div>
-  </div>
+  <Discord />
 </template>
 <style scoped>
-#sidebar .router-link-active {
-  background-color: brown;
-}
+
 </style>
