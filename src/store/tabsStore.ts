@@ -8,8 +8,8 @@ export const tabsStore = defineStore('tabsStore', () => {
    ])
    const getTabs = computed(() => tabsList)
 
-   function addTab(tab) {
-      let hasTab = tabsList.value.find(v => v.path === tab.path)
+   function addTab(tab: { name: string; path: string }) {
+      const hasTab = tabsList.value.find(v => v.path === tab.path)
       if (!hasTab) {
          tabsList.value.push(tab)
       }
