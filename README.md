@@ -1,3 +1,7 @@
-# Vue 3 Demo
+# Project : The Factory 
 
-유튜브 : https://www.youtube.com/@hobbyMett
+## Introduce
+
+"The Factory" project is a project that develops various types of systems used in the manufacturing industry into integrated solutions. 
+
+
