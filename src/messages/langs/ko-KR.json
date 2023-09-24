@@ -1,9 +1,13 @@
 {
-    "home": "홈",
-    "about": "소개",
-    "member": "회원정보",
-    "username": "사용자 이메일",
-    "password": "패스워드",
-    "language": "언어"
-
+  "home": "홈",
+  "about": "소개",
+  "member": "회원정보",
+  "username": "사용자 이메일",
+  "password": "패스워드",
+  "language": "언어",
+  "sign-in": "로그인",
+  "forgot-password": "패스워드를 잊었나요?",
+  "dont-have-an-account": "계정이 없나요?",
+  "sign-up": "회원가입",
+  "hello-the-factory": "안녕 공장아"
 }

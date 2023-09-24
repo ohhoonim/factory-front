@@ -20,8 +20,10 @@ const languages = [
         <v-app-bar class="bg-indigo-lighten-5" justify="center">
             <v-app-bar-title>The Factory</v-app-bar-title>
             <v-spacer></v-spacer>
-            <v-select :label="t('language')" :items="languages" density="compact" 
-                v-model="locale" hide-details class="my-5"></v-select>
+            <div>
+                <v-select :label="t('language')" :items="languages" density="compact" 
+                    v-model="locale" hide-details class="my-5"></v-select>
+            </div>
         </v-app-bar>
         <v-main>
             <router-view></router-view>
