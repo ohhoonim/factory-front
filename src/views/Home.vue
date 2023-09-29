@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 const items = [
         { title: 'Item #1', value: 1, },
         { title: 'Item #2', value: 2, },

@@ -3,8 +3,6 @@ import Discord from "@/layouts/default/Discord.vue";
 </script>
 
 <template>
-  <Discord />
+  <router-view></router-view>
 </template>
-<style scoped>
-
-</style>
+<style scoped></style>

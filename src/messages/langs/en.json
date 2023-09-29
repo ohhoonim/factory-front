@@ -1,0 +1,13 @@
+{
+  "home": "HOME",
+  "about": "ABOUT",
+  "member": "MEMBER",
+  "username": "User Name",
+  "password": "Password",
+  "language": "Language",
+  "sign-in": "Sign in",
+  "forgot-password": "Forgot password?",
+  "dont-have-an-account": "Don't have an account?",
+  "sign-up": "Sign Up",
+  "hello-the-factory": "Hello The Factory"
+}

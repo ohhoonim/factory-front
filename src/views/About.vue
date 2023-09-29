@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 import { mdiAccount } from "@mdi/js";
 </script>
 
