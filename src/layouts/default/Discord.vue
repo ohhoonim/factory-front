@@ -1,13 +1,18 @@
 <script lang="ts" setup>
 import { mdiSquare, mdiCircle, mdiTriangle } from "@mdi/js"
-import { useRouter } from 'vue-router'
+import { RouteRecordRaw, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
-const routes = useRouter().getRoutes().filter(r => r.name ==='default')[0]?.children
+import { useAuthStore } from '@/store/authService'
+const routes: RouteRecordRaw[] = useRouter().getRoutes().filter(r => r.name ==='default')[0]?.children
 const { t, locale } = useI18n()
 const languages = [
     { title: '한국어', value: 'ko' },
     { title: 'English', value: 'en' },
 ]
+const auth = useAuthStore()
+const logout = () => {
+  auth.logout()
+}
 </script>
 <template>
   <v-app id="inspire">
@@ -28,11 +33,13 @@ const languages = [
     </v-navigation-drawer>
 
     <v-navigation-drawer width="244">
-      <v-sheet color="grey-lighten-5" height="128" width="100%"></v-sheet>
+      <v-sheet color="grey-lighten-5" height="128" width="100%">
+        <v-btn @click="logout"></v-btn>
+      </v-sheet>
       
       <v-list>
         <v-list-item v-for="route in routes" :key="route.name" :to="route"
-        density="compact" :title="t(route.name)">
+        density="compact" :title="t(route.name?.toString() ?? '')">
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
