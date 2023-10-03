@@ -3,11 +3,13 @@ import { mdiSquare, mdiCircle, mdiTriangle } from "@mdi/js"
 import { RouteRecordRaw, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { useAuthStore } from '@/store/authService'
-const routes: RouteRecordRaw[] = useRouter().getRoutes().filter(r => r.name ==='default')[0]?.children
+import { useTheme } from 'vuetify'
+const routes: RouteRecordRaw[] = useRouter().getRoutes().filter(r => r.name === 'default')[0]?.children
 const { t, locale } = useI18n()
+const theme = useTheme()
 const languages = [
-    { title: '한국어', value: 'ko' },
-    { title: 'English', value: 'en' },
+  { title: '한국어', value: 'ko' },
+  { title: 'English', value: 'en' },
 ]
 const auth = useAuthStore()
 const logout = () => {
@@ -36,26 +38,28 @@ const logout = () => {
       <v-sheet color="grey-lighten-5" height="128" width="100%">
         <v-btn @click="logout"></v-btn>
       </v-sheet>
-      
+
       <v-list>
-        <v-list-item v-for="route in routes" :key="route.name" :to="route"
-        density="compact" :title="t(route.name?.toString() ?? '')">
+        <v-list-item v-for="route in routes" :key="route.name" :to="route" density="compact"
+          :title="t(route.name?.toString() ?? '')">
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
 
     <v-app-bar class="px-3" color="grey-lighten-4" flat height="72">
       <v-spacer></v-spacer>
-      
+
       <v-responsive max-width="156">
         <v-text-field bg-color="grey-lighten-1" density="compact" flat hide-details rounded="pill"
           variant="solo-filled"></v-text-field>
-        </v-responsive>
-        <div>
-          <v-select :label="t('language')" :items="languages" density="compact" 
-                    v-model="locale" hide-details class="my-5"></v-select>
-        </div>
-
+      </v-responsive>
+      <div>
+        <v-select :label="t('language')" :items="languages" density="compact" v-model="locale" hide-details
+          class="my-5"></v-select>
+      </div>
+      <div>
+        <v-switch v-model="theme.global.name.value" true-value="light" false-value="dark">{{ t('theme') }}</v-switch>
+      </div>
     </v-app-bar>
 
     <v-main>
@@ -75,3 +79,4 @@ const logout = () => {
     </v-footer>
   </v-app>
 </template>
+@/store/AuthService

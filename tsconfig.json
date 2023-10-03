@@ -16,7 +16,8 @@
     "types": ["node", "vuetify"],
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    "forceConsistentCasingInFileNames": false  // 파일명 대소문자 구분 default: true
   },
   "include": [
     "src/**/*.ts",

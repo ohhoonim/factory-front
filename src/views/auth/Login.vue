@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useAuthStore, LoginUser } from '@/store/authService';
+import { useAuthStore, LoginUser } from '@/store/AuthService';
 import { reactive } from 'vue'
 import { useI18n } from 'vue-i18n';
 
@@ -9,7 +9,7 @@ const user: LoginUser = reactive({
     email: 'matthew@ohhoonim.dev',
     password: '1234',
 })
-const login = () => {
+function login(): void {
     authStore.login(user)
  }
 </script>
@@ -29,4 +29,4 @@ const login = () => {
         </v-sheet>
     </div>
 </template>
-@/store/authService
+@/store/authService@/store/AuthService

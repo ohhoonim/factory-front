@@ -35,6 +35,8 @@ export const useAuthStore = defineStore('auth', () => {
             const datas = (await responseData).data
             token.value = datas.accessToken;
             router.push(returnUrl.value ?? "/")
+        } else if (response.status === 403) {
+            
         }
     }
     async function refresh() {

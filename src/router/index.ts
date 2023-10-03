@@ -1,7 +1,7 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, Router } from 'vue-router'
 import Discord from '../layouts/default/Discord.vue'
 import Auth from '../layouts/auth/Auth.vue'
-import { useAuthStore } from '@/store/authService'
+import { useAuthStore } from '@/store/AuthService'
 
 const routes = [
     { path: '', redirect: '/home'},
@@ -26,7 +26,7 @@ const routes = [
     },
 ]
 
-const router = createRouter({
+const router: Router = createRouter({
     history: createWebHistory(),
     routes,
 })
