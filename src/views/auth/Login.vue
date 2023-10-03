@@ -10,7 +10,6 @@ const user: LoginUser = reactive({
     password: '1234',
 })
 const login = () => {
-    console.log('login...', user)
     authStore.login(user)
  }
 </script>
