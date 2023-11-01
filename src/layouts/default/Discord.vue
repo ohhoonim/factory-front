@@ -2,7 +2,7 @@
 import { mdiSquare, mdiCircle, mdiTriangle } from "@mdi/js"
 import { RouteRecordRaw, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
-import { useAuthStore } from '@/store/authService'
+import { useAuthStore } from '@/store/AuthService'
 import { useTheme } from 'vuetify'
 const routes: RouteRecordRaw[] = useRouter().getRoutes().filter(r => r.name === 'default')[0]?.children
 const { t, locale } = useI18n()
@@ -79,4 +79,4 @@ const logout = () => {
     </v-footer>
   </v-app>
 </template>
-@/store/AuthService
+@/store/AuthService@/store/AuthService
