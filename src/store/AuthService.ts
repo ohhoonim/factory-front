@@ -23,7 +23,7 @@ export const useAuthStore = defineStore('auth', () => {
     const currentToken = computed(() => token.value)
 
     async function login(loginUser: LoginUser) {
-        const response = await fetch('/api/v1/auth/login', {
+        const response = await fetch('http://127.0.0.1:8080/api/v1/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -35,27 +35,29 @@ export const useAuthStore = defineStore('auth', () => {
             const datas = (await responseData).data
             token.value = datas.accessToken;
             router.push(returnUrl.value ?? "/")
-        } else if (response.status === 403) {
-            
-        }
+        } 
     }
     async function refresh() {
-        const response = await fetch('/api/v1/auth/refresh', {
+        const response = await fetch('http://127.0.0.1:8080/api/v1/auth/refresh', {
             method: 'POST',
             credentials: "same-origin",
             headers: {
                 'Content-Type': 'application/json'
             }, 
         })
-        if (response.status === 200) {
+        if (response.status === 200 ) {
             const responseData: Promise<Response> = await response.json()
             const datas = (await responseData).data
-            token.value = datas.accessToken;
+            if (datas.accessToken) {
+                token.value = datas.accessToken;
+            } else if ((await responseData).code === "ERROR") {
+                console.warn(JSON.stringify((await responseData)))
+            }
         }
     }
     async function logout() {
         const authorizationString = 'Bearer ' + token.value
-        const response = await fetch('/api/v1/auth/logout', {
+        await fetch('http://127.0.0.1:8080/api/v1/auth/logout', {
             method: 'POST',
             credentials: "same-origin",
             headers: {
