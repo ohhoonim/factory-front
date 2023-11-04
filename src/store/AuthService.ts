@@ -1,11 +1,13 @@
 import { ref, Ref, computed } from "vue"
 import router from "@/router"
 import { defineStore } from "pinia"
+import axios, { AxiosResponse } from "axios"
 
 export interface LoginUser {
     email: string,
     password: string,
 }
+
 export interface Response {
     code: string,
     message: string,
@@ -15,27 +17,24 @@ export interface Response {
 }
 
 export const useAuthStore = defineStore('auth', () => {
-    const user: Ref<string> =  ref('')
+    const user: Ref<string> = ref('')
     const token: Ref<string> = ref('')
     const returnUrl: Ref<string> = ref('/')
 
     const currentUser = computed(() => user.value)
     const currentToken = computed(() => token.value)
 
-    async function login(loginUser: LoginUser) {
-        const response = await fetch('http://127.0.0.1:8080/api/v1/auth/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            }, 
-            body: JSON.stringify(loginUser)
-        })
-        if (response.status === 200) {
-            const responseData: Promise<Response> = await response.json()
-            const datas = (await responseData).data
-            token.value = datas.accessToken;
+    async function login(loginUser: LoginUser): Promise<Response> {
+        const response: AxiosResponse = await axios.post("http://127.0.0.1:8080/api/v1/auth/login",
+        { ...loginUser }, {
+        headers: { Authorization: "application/json" }})
+        
+        const datas: Response = await response.data
+        if (datas.data.accessToken) {
+            token.value = datas.data.accessToken
             router.push(returnUrl.value ?? "/")
         } 
+        return Promise.resolve(datas)
     }
     async function refresh() {
         const response = await fetch('http://127.0.0.1:8080/api/v1/auth/refresh', {
@@ -43,9 +42,9 @@ export const useAuthStore = defineStore('auth', () => {
             credentials: "same-origin",
             headers: {
                 'Content-Type': 'application/json'
-            }, 
+            },
         })
-        if (response.status === 200 ) {
+        if (response.status === 200) {
             const responseData: Promise<Response> = await response.json()
             const datas = (await responseData).data
             if (datas.accessToken) {
@@ -63,7 +62,7 @@ export const useAuthStore = defineStore('auth', () => {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': authorizationString,
-            }, 
+            },
         })
         token.value = ''
         user.value = ''
@@ -81,3 +80,42 @@ export const useAuthStore = defineStore('auth', () => {
     }
 })
 
+export interface SignupUser {
+    email: string,
+    password: string,
+    passwordVerify: string,
+    name: string
+}
+
+export const useSignupStore = defineStore("signup", () => {
+    async function checkRequiredItem(user: SignupUser): Promise<boolean> {
+        const response: AxiosResponse = await axios.post("http://127.0.0.1:8080/api/v1/auth/checkRequiredItem",
+            { ...user }, {
+            headers: { Authorization: "application/json" }
+        })
+        let checkedRequiredItem = false
+        if ((response.data?.code ?? "ERROR") === "ERROR") {
+            checkedRequiredItem = true
+        }
+        return Promise.resolve(checkedRequiredItem)
+    }
+
+    async function requestSignup(user: SignupUser): Promise<Response> {
+        const response: AxiosResponse = await axios.post("http://127.0.0.1:8080/api/v1/auth/requestSignup",
+        { ...user }, {
+        headers: { Authorization: "application/json" }})
+        
+        return Promise.resolve(response.data)
+    }
+
+    async function resendMail(email: string) {
+
+    }
+
+    return {
+        checkRequiredItem,
+        requestSignup,
+        resendMail,
+    }
+
+})

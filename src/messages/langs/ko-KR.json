@@ -10,5 +10,8 @@
   "dont-have-an-account": "계정이 없나요?",
   "sign-up": "회원가입",
   "hello-the-factory": "안녕 공장아",
-  "theme": "테마"
+  "theme": "테마",
+  "passwordVerify": "패스워드 확인",
+  "required-item": "입력값이 존재하지 않습니다.",
+  "name": "이름"
 }

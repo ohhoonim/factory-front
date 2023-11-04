@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useAuthStore, LoginUser } from '@/store/AuthService';
+import { useAuthStore, LoginUser, Response } from '@/store/AuthService';
 import { ref, reactive } from 'vue'
 import { useI18n } from 'vue-i18n';
 
@@ -16,7 +16,10 @@ async function login(event: any) {
     const results = await event
     const errors = await results.errors
     if (errors?.length === 0) {
-        authService.login(user)
+        const response: Response = await authService.login(user)
+        if (response.code === 'ERROR') {
+            alert(t(response.message))
+        }
     }
     loading.value = false
 }
@@ -34,7 +37,6 @@ const emailRules = [
 <template>
     <div class="d-flex align-center justify-center" style="height: 90vh">
         <v-sheet width="400" class="mx-auto">
-            <h2>{{ t('hello-the-factory') }}</h2>
             <v-form validate-on="submit lazy" @submit.prevent="login">
                 <v-text-field v-model="user.email" :label="t('username')" :rules="emailRules" required
                     variant="outlined"></v-text-field>
@@ -44,7 +46,7 @@ const emailRules = [
                 <v-btn type="submit" block :loading="loading" color="primary" class="mt-2">{{ t('sign-in') }}</v-btn>
             </v-form>
             <div class="mt-2">
-                <p class="text-body-2">{{ t('dont-have-an-account') }} <a href="#">{{ t('sign-up') }}</a></p>
+                <p class="text-body-2">{{ t('dont-have-an-account') }} <router-link to="signup">{{ t('sign-up') }}</router-link> </p>
             </div>
         </v-sheet>
     </div>
