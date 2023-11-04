@@ -1,7 +1,7 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, Router } from 'vue-router'
 import Discord from '../layouts/default/Discord.vue'
 import Auth from '../layouts/auth/Auth.vue'
-import { useAuthStore } from '@/store/authService'
+import { useAuthStore } from '@/store/AuthService'
 
 const routes = [
     { path: '', redirect: '/home'},
@@ -22,21 +22,22 @@ const routes = [
         component: Auth,
         children: [
             { name: 'login', path: '/auth/login', component: () => import('@/views/auth/Login.vue'), meta: {authRequired: false} },
+            { name: 'signup', path: '/auth/signup', component: () => import('@/views/auth/Signup.vue'), meta: {authRequired: false}},
         ],
     },
 ]
 
-const router = createRouter({
+const router: Router = createRouter({
     history: createWebHistory(),
     routes,
 })
 
 router.beforeEach(async (to, from, next) => {
     const auth = useAuthStore()
-    if (auth.token === '') {
+    if (auth.currentToken === '') {
         await auth.refresh()
     }
-    if (to.meta.authRequired && auth.token === '') {
+    if (to.meta.authRequired && auth.currentToken === '') {
         next({name: 'login'})
     }
     next()

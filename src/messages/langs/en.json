@@ -9,5 +9,9 @@
   "forgot-password": "Forgot password?",
   "dont-have-an-account": "Don't have an account?",
   "sign-up": "Sign Up",
-  "hello-the-factory": "Hello The Factory"
+  "hello-the-factory": "Hello The Factory",
+  "theme": "Theme",
+  "passwordVerify": "password verify",
+  "required-item": "입력값이 존재하지 않습니다",
+  "name": "name"
 }

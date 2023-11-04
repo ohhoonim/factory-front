@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { mdiYoutube, mdiGithub, mdiPost, mdiSquare } from "@mdi/js";
-import { useI18n } from "vue-i18n";
+import { mdiYoutube, mdiGithub, mdiPost, mdiSquare } from "@mdi/js"
+import { useI18n } from "vue-i18n"
+import { useTheme } from 'vuetify'
 const { t, locale } = useI18n()
+const theme = useTheme()
 const icons = [
     mdiYoutube, mdiGithub, mdiPost
 ]
@@ -10,6 +12,7 @@ const languages = [
     { title: '한국어', value: 'ko' },
     { title: 'English', value: 'en' },
 ]
+
 </script>
 <template>
     <v-app>
@@ -22,7 +25,11 @@ const languages = [
             <v-spacer></v-spacer>
             <div>
                 <v-select :label="t('language')" :items="languages" density="compact" 
-                    v-model="locale" hide-details class="my-5"></v-select>
+                    v-model="locale" hide-details class="my-5" rounded="true"></v-select>
+            </div>
+            <div>
+                <v-switch v-model="theme.global.name.value"
+                true-value="light" false-value="dark">{{ t('theme') }}</v-switch>
             </div>
         </v-app-bar>
         <v-main>
