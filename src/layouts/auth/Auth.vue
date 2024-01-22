@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { mdiYoutube, mdiGithub, mdiPost, mdiSquare } from "@mdi/js"
+import { mdiYoutube, mdiGithub, mdiPost, mdiThemeLightDark } from "@mdi/js"
 import { useI18n } from "vue-i18n"
 import { useTheme } from 'vuetify'
 const { t, locale } = useI18n()
 const theme = useTheme()
 const icons = [
-    mdiYoutube, mdiGithub, mdiPost
+    {icon : mdiYoutube, href: "https://www.youtube.com/@hobbyMett"}, 
+    {icon : mdiGithub, href: "https://github.com/ohhoonim"}, 
+    {icon : mdiPost, href: "https://ohhoonim.blogspot.com/"}
 ]
 const languages = [
     { title: '한국어', value: 'ko' },
@@ -15,33 +17,27 @@ const languages = [
 
 </script>
 <template>
-    <v-app>
-        <v-system-bar class="bg-indigo-lighten-1">
-            <v-spacer></v-spacer>
-            <v-icon :icon="mdiSquare"></v-icon>
-        </v-system-bar>
-        <v-app-bar class="bg-indigo-lighten-5" justify="center">
-            <v-app-bar-title>The Factory</v-app-bar-title>
-            <v-spacer></v-spacer>
-            <div>
-                <v-select :label="t('language')" :items="languages" density="compact" 
-                    v-model="locale" hide-details class="my-5" rounded="true"></v-select>
-            </div>
-            <div>
-                <v-switch v-model="theme.global.name.value"
-                true-value="light" false-value="dark">{{ t('theme') }}</v-switch>
+    <v-app class="d-flex flex-column">
+        <v-app-bar class="d-flex justify-between align-center flex-grow-0">
+            <v-app-bar-title class="font-weight-bold text-h5">The Factory</v-app-bar-title>
+            <div class="d-flex justify-end align-center ga-12 pt-6 mr-10">
+                <v-switch v-model="theme.global.name.value" true-value="dark" false-value="light"
+                    :prepend-icon="mdiThemeLightDark">
+                </v-switch>
+                <v-select :label="t('language')" :items="languages" v-model="locale"
+                    variant="underlined" density="compact"></v-select>
             </div>
         </v-app-bar>
-        <v-main>
+        <v-main class="flex-grow-1">
             <router-view></router-view>
         </v-main>
-        <v-footer app class="bg-indigo-lighten-1 text-center d-flex flex-column">
-            <div>
-                <v-btn v-for="icon in icons" :key="icon" class="mx-4" :icon="icon" variant="plain" size="small"></v-btn>
+        <v-footer class="flex-column flex-grow-0">
+            <div class="d-flex ga-10 my-5">
+                <v-btn v-for="icon in icons" :key="icon.href" :icon="icon.icon" 
+                :href="icon.href" target="_blank" size="small" 
+                color="white" variant="outlined"></v-btn>
             </div>
-            <div>
-                {{ new Date().getFullYear() }} — <strong>Project : The Factory</strong>
-            </div>
+            <span>{{ new Date().getFullYear() }} — <strong>Project : The Factory</strong></span>
         </v-footer>
     </v-app>
 </template>
