@@ -35,18 +35,19 @@ const emailRules = [
 ]
 </script>
 <template>
-    <div class="d-flex align-center justify-center" style="height: 90vh">
-        <v-sheet width="400" class="mx-auto">
+    <div class="d-flex justify-center pt-16"  >
+        <v-sheet width="500" class="pa-10 rounded-xl elevation-20" >
             <v-form validate-on="submit lazy" @submit.prevent="login">
                 <v-text-field v-model="user.email" :label="t('username')" :rules="emailRules" required
-                    variant="outlined"></v-text-field>
+                    variant="underlined"></v-text-field>
                 <v-text-field v-model="user.password" type="password" :label="t('password')"
-                    :rules="[(v: any) => !!v || t('password') + 'is required']" required variant="outlined"></v-text-field>
-                <a href="#" class="text-body-2 font-weight-regular">{{ t('forgot-password') }}</a>
+                    :rules="[(v: any) => !!v || t('password') + 'is required']" required variant="underlined"></v-text-field>
+                <a href="#" class="text-body-2 text-decoration-none">{{ t('forgot-password') }}</a>
                 <v-btn type="submit" block :loading="loading" color="primary" class="mt-2">{{ t('sign-in') }}</v-btn>
             </v-form>
             <div class="mt-2">
-                <p class="text-body-2">{{ t('dont-have-an-account') }} <router-link to="signup">{{ t('sign-up') }}</router-link> </p>
+                <p class="text-body-2">{{ t('dont-have-an-account') }} <router-link to="signup" class="text-decoration-none">{{ t('sign-up') }}</router-link>
+                </p>
             </div>
         </v-sheet>
     </div>

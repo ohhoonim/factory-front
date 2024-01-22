@@ -50,21 +50,22 @@ const emailRules = [
 ]
 </script>
 <template>
-    <div class="d-flex align-center justify-center" style="height: 90vh">
-        <v-sheet width="400" class="mx-auto">
-            <v-form validate-on="submit lazy" @submit.prevent="signup">
+    <div class="d-flex justify-center pt-16"  >
+        <v-sheet width="500" class="pa-10 rounded-xl elevation-20" >
+            <v-form validate-on="submit lazy" @submit.prevent="signup" class="d-flex flex-column ga-2">
                 <v-text-field v-model="user.email" :label="t('username')" :rules="emailRules" required
-                    variant="outlined"></v-text-field>
+                    variant="underlined"></v-text-field>
                 <v-text-field v-model="user.name" :label="t('name')" required 
-                    variant="outlined"></v-text-field>
+                    variant="underlined"></v-text-field>
                 <v-text-field v-model="user.password" type="password" :label="t('password')"
-                    :rules="[(v: any) => !!v || t('password') + 'is required']" required variant="outlined"></v-text-field>
+                    :rules="[(v: any) => !!v || t('password') + 'is required']" required variant="underlined"></v-text-field>
                 <v-text-field v-model="user.passwordVerify" type="password" :label="t('passwordVerify')"
                     :rules="[(v: any) => !!v || t('passwordVerify') + 'is required']" required
-                    variant="outlined"></v-text-field>
+                    variant="underlined"></v-text-field>
                 <v-btn type="submit" block :loading="loading" color="primary" class="mt-2">{{ t('sign-up') }}</v-btn>
+                <v-btn to="login" variant="outlined" color="primary" class="mt-2">{{ t('sign-in') }} 페이지 돌아가기</v-btn>
+                
             </v-form>
-
         </v-sheet>
     </div>
 </template>
