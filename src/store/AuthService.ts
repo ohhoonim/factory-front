@@ -25,7 +25,7 @@ export const useAuthStore = defineStore('auth', () => {
     const currentToken = computed(() => token.value)
 
     async function login(loginUser: LoginUser): Promise<Response> {
-        const response: AxiosResponse = await axios.post("http://127.0.0.1:8080/api/v1/auth/login",
+        const response: AxiosResponse = await axios.post("/api/v1/auth/login",
         { ...loginUser }, {
         headers: { Authorization: "application/json" }})
         
@@ -37,7 +37,7 @@ export const useAuthStore = defineStore('auth', () => {
         return Promise.resolve(datas)
     }
     async function refresh() {
-        const response = await fetch('http://127.0.0.1:8080/api/v1/auth/refresh', {
+        const response = await fetch('/api/v1/auth/refresh', {
             method: 'POST',
             credentials: "same-origin",
             headers: {
@@ -56,7 +56,7 @@ export const useAuthStore = defineStore('auth', () => {
     }
     async function logout() {
         const authorizationString = 'Bearer ' + token.value
-        await fetch('http://127.0.0.1:8080/api/v1/auth/logout', {
+        await fetch('/api/v1/auth/logout', {
             method: 'POST',
             credentials: "same-origin",
             headers: {
@@ -89,7 +89,7 @@ export interface SignupUser {
 
 export const useSignupStore = defineStore("signup", () => {
     async function checkRequiredItem(user: SignupUser): Promise<boolean> {
-        const response: AxiosResponse = await axios.post("http://127.0.0.1:8080/api/v1/auth/checkRequiredItem",
+        const response: AxiosResponse = await axios.post("/api/v1/auth/checkRequiredItem",
             { ...user }, {
             headers: { Authorization: "application/json" }
         })
@@ -101,7 +101,7 @@ export const useSignupStore = defineStore("signup", () => {
     }
 
     async function requestSignup(user: SignupUser): Promise<Response> {
-        const response: AxiosResponse = await axios.post("http://127.0.0.1:8080/api/v1/auth/requestSignup",
+        const response: AxiosResponse = await axios.post("/api/v1/auth/requestSignup",
         { ...user }, {
         headers: { Authorization: "application/json" }})
         

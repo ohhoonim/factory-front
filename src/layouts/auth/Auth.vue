@@ -35,7 +35,7 @@ const languages = [
             <div class="d-flex ga-10 my-5">
                 <v-btn v-for="icon in icons" :key="icon.href" :icon="icon.icon" 
                 :href="icon.href" target="_blank" size="small" 
-                color="white" variant="outlined"></v-btn>
+                color="primary" variant="outlined"></v-btn>
             </div>
             <span>{{ new Date().getFullYear() }} — <strong>Project : The Factory</strong></span>
         </v-footer>
