@@ -5,7 +5,7 @@ const { t } = useI18n()
 </script>
 
 <template>
-    <h2>{{ t('member') }}</h2>
+    <h2>{{ t('guide-details') }}</h2>
 </template>
 
 <style scoped>

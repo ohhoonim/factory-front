@@ -1,7 +1,7 @@
 {
   "home": "홈",
   "about": "소개",
-  "member": "회원정보",
+  "member": "회원",
   "username": "사용자 이메일",
   "password": "패스워드",
   "language": "언어",
@@ -13,5 +13,12 @@
   "theme": "테마",
   "passwordVerify": "패스워드 확인",
   "required-item": "입력값이 존재하지 않습니다.",
-  "name": "이름"
+  "name": "이름",
+  "logout": "로그아웃",
+  "guide-default": "기본형",
+  "guide-master-details": "마스터 디테일형",
+  "guide-move": "데이터 이동형",
+  "guide-details": "상세보기형",
+  "guide-excel": "엑셀 편집형",
+  "guide-composition": "복합형"
 }

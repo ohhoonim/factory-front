@@ -11,10 +11,17 @@ const routes = [
         component: Discord,
         children: [
             { name: 'home', path: '/home', component: () => import('@/views/Home.vue') , meta: {authRequired: true}},
-            { name: 'about', path: '/about', component: () => import('@/views/About.vue') , meta: {authRequired: true}},
             { name: 'member', path: '/member', component: () => import('@/views/Member.vue') , meta: {authRequired: true}},
+
+            { name: 'guide-default', path: '/member', component: () => import('@/views/guide/Default.vue') , meta: {authRequired: true}},
+            { name: 'guide-master-details', path: '/member', component: () => import('@/views/guide/MasterDetails.vue') , meta: {authRequired: true}},
+            { name: 'guide-move', path: '/member', component: () => import('@/views/guide/Move.vue') , meta: {authRequired: true}},
+            { name: 'guide-details', path: '/member', component: () => import('@/views/guide/Details.vue') , meta: {authRequired: true}},
+            { name: 'guide-excel', path: '/member', component: () => import('@/views/guide/Excel.vue') , meta: {authRequired: true}},
+            { name: 'guide-composition', path: '/member', component: () => import('@/views/guide/Composition.vue') , meta: {authRequired: true}},
         ]
         , meta: {authRequired: true}
+        
     },
     {
         name: 'auth',

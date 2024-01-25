@@ -6,10 +6,9 @@ const items = [
 </script>
 
 <template>
-  <h1>Home</h1>
-  <v-card class="mx-auto" max-width="300">
-    <v-list :items="items"></v-list>
-  </v-card>
+  <div>
+    기본 페이지 입니다. 대시보드 같은거 보여주면 될 듯
+  </div>
 </template>
 
 <style scoped></style>

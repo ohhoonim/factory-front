@@ -5,7 +5,7 @@
   "username": "User Name",
   "password": "Password",
   "language": "Language",
-  "sign-in": "Sign in",
+  "sign-in": "로그인",
   "forgot-password": "Forgot password?",
   "dont-have-an-account": "Don't have an account?",
   "sign-up": "Sign Up",
@@ -13,5 +13,12 @@
   "theme": "Theme",
   "passwordVerify": "password verify",
   "required-item": "입력값이 존재하지 않습니다",
-  "name": "name"
+  "name": "name",
+  "logout": "LOGOUT",
+  "guide-default": "GUIDE-DEFAULT",
+  "guide-master-details": "GUIDE-MASTER-DETAILS",
+  "guide-move": "GUIDE-MOVE",
+  "guide-details": "GUIDE-DETAILS",
+  "guide-excel": "GUIDE-EXCEL",
+  "guide-composition": "GUIDE-COMPOSITION"
 }
